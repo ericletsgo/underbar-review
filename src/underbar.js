@@ -173,7 +173,7 @@
    * as an example of this.
    */
 
-  // Takes an array of objects and returns and array of the values of
+  // Takes an array of objects and returns an array of the values of
   // a certain property in it. E.g. take an array of people and return
   // an array of just their ages
   _.pluck = function(collection, key) {
@@ -206,6 +206,22 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    //iterate through our collection array
+      //if accumlator exists
+        //start from your accumulator and add the output from your iterator function    
+      //else
+      
+    var hasAccumulator = accumulator !== undefined; // returns a boolean
+
+    _.each(collection, function(item) {
+      if (!hasAccumulator) {
+        accumulator = item;
+        hasAccumulator = true;
+      } else {
+        accumulator = iterator(accumulator, item);
+      }
+    });
+    return accumulator;
   };
 
   // Determine if the array or object contains a given value (using `===`).
